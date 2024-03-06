@@ -1,0 +1,11 @@
+---
+title: "Function_of_the_week_BSTA526_W24"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+1 + 1
+```

@@ -21,13 +21,11 @@ link-external-newwindow: true
 ::: g-col-8
 # Functions of the Week 
 
-### BSTA526 Winter 2024
+### R Programming for Health Data Science
 
-#### R Programming for Health Data Science
-
-
+BSTA 526 Winter 2024  
 OHSU-PSU School of Public Health  
-Oregon Health & Science University
+Oregon Health & Science University 
 
 :::
 
@@ -35,6 +33,11 @@ Oregon Health & Science University
 :::
 :::
 
+<br>
+
+* Please select functions of the week presentations from the left menu.
+* Presentations were created by students enrolled in BSTA 526. 
+* [BSTA 526 course webpage](https://niederhausen.github.io/BSTA_526_W24/) 
 
 
 ------------------------------------------------------------------------

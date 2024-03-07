@@ -1,11 +1,49 @@
 ---
-title: "Function_of_the_week_BSTA526_W24"
+title: ""
+toc: false
+sidebar: true
+page-layout: full
+link-external-newwindow: true
 ---
 
-This is a Quarto website.
+::: {style="background-color: #78c2ad"}
+::: {style="color: #FFFFFF"}
+::: grid
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+::: g-col-4
 
-```{r}
-1 + 1
-```
+&nbsp;
+
+![](images/IMG_6759_med.png){fig-align="center" width="150"}
+
+:::
+
+::: g-col-8
+# Function of the Week 
+
+### BSTA526 Winter 2024
+
+#### R Programming for Health Data Science
+
+
+OHSU-PSU School of Public Health  
+Oregon Health & Science University
+
+:::
+
+:::
+:::
+:::
+
+
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-8
+:::
+
+::: g-col-4
+[{{< iconify icomoon-free github size=20px >}} View the source on GitHub](https://github.com/niederhausen/Function_of_the_week_BSTA526_W24)
+:::
+:::

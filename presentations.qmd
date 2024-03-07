@@ -1,0 +1,15 @@
+---
+title: "Functions of the Week"
+format: 
+  html:
+    listing: 
+      contents: function_week
+      type: table
+      table-hover: true
+      fields: [date, title, description]
+      sort: "date asc"
+      date-format: "short"
+    link-external-newwindow: true
+---
+
+Below are links to students' __Function of the Week__ submissions.

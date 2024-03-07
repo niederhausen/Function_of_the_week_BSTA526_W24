@@ -1,20 +1,40 @@
 project:
   type: website
+  execute-dir: project
   output-dir: docs
 
 website:
-  title: "Function_of_the_week_BSTA526_W24"
+  title: "Function of the week for BSTA526 Winter 24"
   navbar:
-    left:
+    background: primary
+    search: true
+    logo: "images/IMG_6759_med.png"
+    foreground: "#fff"
+    collapse-below: sm
+    right:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: schedule.qmd
+        text: Schedule
+      - href: presentations.qmd
+        text: Presentations
 
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 4
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: schedule.qmd
+        text: Schedule
+      - href: weeks.qmd
+        text: Weeks
+
+            
 format:
   html:
-    theme: cosmo
+    theme: minty
     css: styles.css
     toc: true
-
-
 

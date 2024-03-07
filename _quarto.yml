@@ -31,7 +31,7 @@ website:
       - href: function_of_the_week_CIRELL_ALFONSO.qmd
         text: dplyr::slice_sample  
       - href: function_week_RUSSELL_reorder.qmd
-        text: forcats::fct_inorder(), fct_infreq(), fct_inseq()
+        text: forcats::fct_inorder()
       - href: function_of_the_week_Higbee.qmd
         text: forcats::fct_shift  
       - href: function_of_the_week_bsta356_Cornacchione.qmd

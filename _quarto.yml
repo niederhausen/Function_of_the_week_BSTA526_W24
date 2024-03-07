@@ -23,6 +23,8 @@ website:
     contents:
       - href: index.qmd
         text: Home
+      - href: function_of_the_week_bsta356_Cornacchione.qmd
+        text: ggplot2::geom_map()  
       - href: function_of_the_week_McMonigal.qmd
         text: dplyr::n_distinct  
       - href: function_of_the_week_CIRELL_ALFONSO.qmd

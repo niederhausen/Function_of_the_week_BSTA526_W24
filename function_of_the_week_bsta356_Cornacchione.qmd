@@ -1,0 +1,103 @@
+---
+title: "ggplot2::geom_map()"
+subtitle: "Function of the Week"
+description: "The geom_map() function is a tool for displaying polygons and developing basic maps"
+author: "Vincenzo Cornacchione"
+date: "02/07/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `ggplot2::geom_map()`
+
+In this document, I will introduce the `geom_map()` function and show what it's for.
+
+```{r}
+#| output: false
+# Load tidyverse up for ggplot2
+library(tidyverse)
+library(mapproj) 
+library(maps)
+
+```
+
+-   The `mapproj` package allows R to convert latitude and longitude coordinates into projected coordinates (you might need to install it first).
+-   Installing `mapproj` should automatically also install the `maps` package, which allows you to access world map data. It's a new version of the legacy map package `mapdata`, which you might still see used in example codes online.
+
+## What is it for?
+
+The function `geom_map()` is similar to `geom_bar()` or `geom_smooth()` in the sense that it works like a predefined layout that tells the plot how to display your data. In this case, `geom_map()` displays polygons as a map.
+
+## But, what are polygons?
+
+Polygons are **closed shapes** formed by connecting a series of points:
+
+-   They can represent various geographical features such as countries, states, or regions. - In the context of maps, polygons **define the boundaries of specific areas**.
+-   For example, the outline of a country on a world map is represented by a polygon. Each polygon consists of a **set of coordinates** (*latitude* and *longitude*) that define its shape.
+
+Here's a visual example of a polygon using `geom_map()` straight out of the R documentation:
+
+![](https://ggplot2.tidyverse.org/reference/geom_map-2.png){width="660"}
+
+## Displaying polygons as a map
+
+Here we'll walk through an example of creating a county map of Oregon:
+
+> *Feel free to explore each step on your own to get comfortable with the functions (they were a bit confusing for me at first!)*
+
+```{r}
+# map_data() allows you to transform data from the maps package into a data frame
+county_map <- map_data("county", "oregon")
+
+# Rename "region" (state) and "subregion" (county) columns in county_map as state and id
+names(county_map)[5:6] <- c("state", "id")                                
+
+# Create a new data frame with county names and id (id values are needed for mapping aesthetics)
+countyData <- data.frame(id = unique(county_map$id), value = rnorm(36)) 
+
+# Now plot and develop the map
+Oregonmap <- ggplot(countyData) +
+  aes(map_id = id) +
+  geom_map(aes(fill = value), map = county_map, colour = "black") +
+  coord_map("polyconic") +                                         # Choose a coordinate system* (I recommend doing a Google search)
+  expand_limits(x = county_map$long, y = county_map$lat)       +   # Setting units and adjusting the plot limits for the x and y axis
+  scale_fill_viridis_c(option="E")                                 # Choose a color scale (for when you are plotting a map with actual data)
+
+# Print the map~
+print(Oregonmap)
+```
+
+> Code partially adapted from Uwe (2013) in [r - When should I use geom_map? - Stack Overflow](https://stackoverflow.com/questions/14698616/when-should-i-use-geom-map)
+
+## Is it helpful?
+
+It's a data visualization tool like any other - How useful `geom_map()` can be is ultimately *up to you* and *your audience*:
+
+-   From my experience, this function is a great way to include **simple**, **yet effective** maps to your reports (and student assignments!) whenever you are working with variables that are tied to regions around the world.
+-   Another bonus is that it is **great for beginners**. `geom_map()` leverages the familiar code structure and building blocks of `ggplot2`. For those (like me!) who might be intimated by more sophisticated functions such as `geom_sf()` or might not have access to mapping software like ArcGIS or Tableau, `geom_map()` is an accessible way to learn about *polygons*, *coordinate systems*, and basic mapping of spatial data.
+
+If you are curious or want to learn more about `geom_map()` check out the R documentation. To learn about geom_sf(), check out these resources:
+
+-   Official 1geom_sf()\` documentation: [Visualise sf objects — CoordSf • ggplot2 (tidyverse.org)](https://ggplot2.tidyverse.org/reference/ggsf.html)
+-   A quick and neat tutorial for `geom_sf()` where you can create a *proportional symbol map*: [Proportional symbol maps (bubble map) in ggplot2 (r-charts.com)](https://r-charts.com/spatial/proportional-symbol-map-ggplot2/)
+-   Geocomputation with R by Lovelace, Nowosad, and Muenchow (an online textbook!): [Geocomputation with R (bookdown.org)](https://bookdown.org/robinlovelace/geocompr/)

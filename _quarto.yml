@@ -14,7 +14,8 @@ website:
     right:
       - href: index.qmd
         text: Home
-
+      - href: https://niederhausen.github.io/BSTA_526_W24/
+        text: BSTA 526
 
   sidebar:
     style: "docked"

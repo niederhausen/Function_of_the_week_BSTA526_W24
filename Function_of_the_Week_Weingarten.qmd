@@ -1,0 +1,132 @@
+---
+title: "tidyr::drop_na()"
+subtitle: "Function of the Week"
+description: "The drop_na function will drop out rows from your dataset where columns contain missing values."
+author: "Ariel Weingarten"
+date: "1/31/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# `tidyr::drop_na()`
+
+In this document, I will introduce the `drop_na()` function and show what it's for.
+
+```{r, warning=FALSE, message=FALSE}
+#load tidyverse up
+library(tidyverse)
+#example dataset
+library(palmerpenguins)
+data(penguins)
+```
+
+## What is it for?
+
+The drop_na function will drop out rows from your dataset where columns contain missing values. It can take two arguments:
+
+* `data` : the name of your dataframe
+
+* `...` : Columns to inspect for missing values. If not specified, all columns are inspected.
+
+Example code setup: `data %>% drop_na()` or `data %>% drop_na(column_name)`
+
+## Example with Penguins dataset
+
+```{r}
+#How many NA's in our dataset?
+(sum(is.na(penguins)))
+
+#What columns contain NA's?
+summary(penguins)
+```
+
+### Drop from one specific column
+
+```{r}
+#Drop NA's from just one column
+penguins_dropNA_mass <- penguins %>% drop_na(body_mass_g)
+summary(penguins_dropNA_mass)
+```
+
+### Drop from all columns
+
+```{r}
+#Drop NA's from all columns
+penguins_dropNA_all <- penguins %>% drop_na()
+summary(penguins_dropNA_all)
+```
+
+
+## Example with Glucose dataset
+
+```{r, warning=FALSE, message=FALSE}
+library(nlme)
+summary(Glucose)
+
+#Drop all NA's
+Glucose_noNA <- Glucose %>% drop_na()
+summary(Glucose_noNA)
+```
+
+## Graphical considerations
+
+__Does having NA's in the graph make sense?__
+
+```{r}
+ggplot(data = penguins, 
+       aes(x = species, fill = species)) + 
+    geom_bar() +
+  facet_wrap(vars(sex)) +
+  labs( x = "Species",
+        y = "Count",
+        title = "Frequency of Species by Sex")
+```
+
+__Does having NA's in the graph make a difference?__
+
+```{r}
+ggplot(data = Glucose,
+       aes(x = Subject, y = conc)) +
+  geom_boxplot() +
+  labs(x = "Subject Number", 
+       y = "Glucose Concentration",
+       title = "Boxplot of Glucose by Subject")
+```
+
+## Is it helpful?
+
+I find this tool very helpful, but it must be used with care. Some modeling techniques will not work with missing values, so it is necessary to find a solution for this. However, dropping all NA's in all columns can drastically reduce the size of your dataset. There are several things to consider before dropping NA's:
+
+* How many NA's are in your dataset? How much data do you lose if you drop them?
+
+* What types of data have NA's?
+
+* Are the NA's in the variables you will be considering?
+
+* Does the modeling technique you want to use accept NA's?
+
+* Does the graph you want to generate make sense with NA's?
+
+

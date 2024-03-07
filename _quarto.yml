@@ -46,6 +46,8 @@ website:
       #   text: purrr::pluck()  
       - href: function_of_the_week_Delsey_str_match_presentation.qmd
         text: stringr::str-match       
+      - href: Function_of_the_Week_Weingarten.qmd
+        text: tidyr::drop_na()  
       - href: function_of_the_week_Cristancho.qmd
         text: tidyr::uncount()  
 

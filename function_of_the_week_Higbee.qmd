@@ -1,0 +1,150 @@
+---
+title: "forcats::fct_shift"
+subtitle: "Function of the Week"
+description: "Shift factor levels to left or right, wrapping around at end"
+author: "Danielle Higbee"
+date: "02/28/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `forcats::fct_shift`
+
+In this document, I will introduce the 'fct_shift` function and show what it's for.
+
+```{r}
+#load tidyverse up
+library(tidyverse)
+
+pacman::p_load(
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import excel data
+  here,         # helps with file management
+  janitor,       # for data cleaning, making tables
+  skimr,
+  titanic       # needed to use the titanic dataset
+  )
+
+#install 'forcats'
+#install.packages("forcats")
+library(forcats) #load forcats package
+library(datasets) #load built in datasets to r
+
+#example dataset
+data("Orange")
+data("titanic_train")
+```
+
+## What is it for?
+
+> Discuss what the function does. Learn from the examples, but show how to use it using another dataset such as `penguins`. If you can provide two examples, even better!
+
+Shift factor levels left or right, wrapping around at the end.
+
+### Arguments
+This function is from the 'forcats' package and is used to shift levels in a factor. The following is the syntax: 
+
+![Syntax](images_presentations/fct_shift(syntax).png)
+
+$\text{f = A factor}$
+
+$\text{n = positive values shift to the left; negative values shift to the right}$
+
+#### Example Shift to Left
+
+![Shift Left](images_presentations/fct_shift(left).png)
+
+#### Example Shift to Right
+![Shift Right](images_presentations/fct_shift(right).png)
+
+### Example given
+```{r}
+x <- factor(
+  c("Mon", "Tue", "Wed"),
+  levels = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"),
+  ordered = TRUE
+)
+x
+fct_shift(x) #default to shift left 1
+fct_shift(x, 2)
+fct_shift(x, -1)
+```
+
+### Example with 'Orange' dataset
+```{r}
+glimpse(Orange)
+
+factor(Orange$Tree)
+
+Orange$Tree <- factor(Orange$Tree,
+    levels = c("1", "2", "3", "4", "5"))
+
+levels(Orange$Tree)
+tabyl(Orange$Tree)
+
+fct_shift(Orange$Tree) # default to shift 1 left
+
+fct_shift(Orange$Tree, 1) # shift left
+
+fct_shift(Orange$Tree, -1) # shift right
+
+fct_shift(Orange$Tree, 4)
+```
+
+### Example with 'Titanic' dataset
+```{r}
+glimpse(titanic_train)
+```
+
+![Titantic Voyage Map](images_presentations/Titanic_voyage_map.png){width=8in}
+
+```{r}
+factor(titanic_train$Embarked)
+titanic_train$Embarked <- factor(titanic_train$Embarked,
+  levels = c("C", "Q", "S")
+)
+
+levels(titanic_train$Embarked)
+```
+Levels are in alphabetical order. 
+
+We want the 'Embarked' column to be in order of the actual voyage of the Titanic. Southampton > Cherbourg > Queenstown
+```{r}
+fct_shift(titanic_train$Embarked, -1)
+
+titanic_train %>% 
+  mutate(Embarked = fct_shift(Embarked, -1)) %>% 
+  tabyl(Embarked)
+```
+
+
+## Is it helpful?
+
+> Discuss whether you think this function is useful for you and your work. Is it the best thing since sliced bread, or is it not really relevant to your work?
+
+This function is helpful! Instead of having to rewrite the entire order of the levels of a factor, you can easily use 'fct_shift' to reorder. However, it should be noted that this is useful when ordered factors are cyclical. So cannot work if you are pulling out a singular factor level to place somewhere else. 
+
+Citation for titanic dataset: <https://cran.r-project.org/web/packages/explore/vignettes/explore_titanic.html>
+
+Citation for titantic voyage picture: <https://en.m.wikipedia.org/wiki/File:Titanic_voyage_map.png>

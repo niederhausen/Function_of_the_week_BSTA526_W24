@@ -1,0 +1,86 @@
+---
+title: "openxlsx::write.xlsx()"
+subtitle: "Function of the Week"
+description: "Write data.frame or a list of data.frames to an xlsx file"
+author: "Katie Clem"
+date: "3/6/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `write.xlsx()`
+
+In this document, I will introduce the `write.xlsx()` function and show what it's for.
+
+```{r}
+library(openxlsx)
+library(here)
+library(tidyverse)
+library(palmerpenguins)
+data(penguins)
+```
+
+## What is it for?
+
+Write write.xlsx() allows you to save the data frames you have created and modified as new excel sheets. 
+
+Let's say you want to create a separate excel sheet for a specific group. In this example we'll take the `palmerspenguins` data set and make a new excel sheet with only the Adelie penguins. 
+
+```{r}
+#filter for Adelie penguins 
+penguins_adelie <- penguins %>%
+  filter(species == "Adelie")%>%
+  print()
+
+#save as new excel sheet
+write.xlsx(penguins_adelie, 
+           file = "penguins_adeile.xlsx")
+```
+
+The excel file is only useful if you know where it is! You can also use `write.xlsx` with the `here()` function to help specify a specific location you would like to save the new excel file. For example I can use `here()` to specify that I want to save the excel file to my BSTA 526 folder so it makes it easier to find later. 
+
+```{r}
+#to save in functions of the week folder 
+write.xlsx(penguins_adelie, 
+           file = here("penguins_adiele.xlsx"))
+```
+
+You can also use `write.xlsx` to write overwrite an existing file with the overwrite argument. For example, I want to create a data frame from the `palmerpenguins` data set that only has Adelie penguins that live on Torgersen and overwrite our existing file we created above. 
+
+```{r}
+#filtering for island Torgersen
+penguins_adelie_torgersen <- penguins_adelie %>%
+  filter(island == "Torgersen")%>%
+  print
+
+#to overwrite previous file 
+write.xlsx(penguins_adelie_torgersen, 
+           file = here("penguins_adiele.xlsx"),
+           overwrite = TRUE)
+```
+
+
+## Is it helpful?
+
+`write.xlsx()` is straightforward and helpful tool since it allows you to save excel sheets of data you have cleaned and/or modified. I could see this being extremely helpful if you need to share cleaned excel sheets of the data with other people or publishers. While it could be useful to use the overwrite argument to overwrite messy excel files this may not be in best practice. 

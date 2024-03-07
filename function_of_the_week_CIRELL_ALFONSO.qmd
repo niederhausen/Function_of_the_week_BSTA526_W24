@@ -1,0 +1,91 @@
+---
+title: "dplyr::slice_sample"
+subtitle: "Function of the Week"
+description: "Update with brief descirption of function"
+author: "Cirell Alfonso"
+date: "Update month/day/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Submission Instructions
+
+Please sign up for a function here (Enter your name and the week you want to present): [function_of_the_week_signup_2024](https://docs.google.com/spreadsheets/d/12UhvFUBeuzKqa3BIUkoq61-d8uaSeaV_R4nNoRqd7Ro/edit?usp=sharing)
+
+For this assignment, please submit both the `.qmd` and the `.html` files. I will add it to the website. Remove your name from the qmd if you do not wish it shared or let us know if it is okay to post in anonymously.
+
+Make sure to update the title, description, author, and date in the yaml above.
+
+Previous years’ Functions of the Week can be found on the previous class websites:
+
+-   <https://sph-r-programming-2023.netlify.app/functions/>
+-   <https://sph-r-programming-2022.netlify.app/functions/>
+-   <https://sph-r-programming.netlify.app/functions/> (2021)
+
+If you select a function which was presented previously, please develop your own examples and content.
+
+# slice_sample( )
+
+In this document, I will introduce the slice_sample( ) function and show what it's for.
+
+```{r}
+library(tidyverse)
+data(mtcars)
+```
+
+## What is it for?
+
+Slice_sample( ) from the dplyr package randomly selects a row from a dataset.
+
+```{r}
+slice_sample(mtcars)
+```
+
+There are various useful arguments in the slice_sample( ) function. We can add *n* to select a set number of rows.
+
+```{r}
+slice_sample(mtcars,n=5)
+```
+
+We can also use *prop* if we want to sample a proportion of samples available in the data set.
+
+```{r}
+slice_sample(mtcars, prop=0.25)
+```
+
+The default has it where replacement is *false.*
+
+```{r}
+slice_sample(mtcars, n=6,
+             replace= TRUE)
+```
+
+Lastly, we can add *weight_by* to add sampling weights to any non-negative vectors.
+
+```{r}
+slice_sample(mtcars, n=5, weight_by = wt)
+```
+
+## Is it helpful?
+
+> This function is definitely helpful. In larger data set, we can get a smaller random sample fairly easily.

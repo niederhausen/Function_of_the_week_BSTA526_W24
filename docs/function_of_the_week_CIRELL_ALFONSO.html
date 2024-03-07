@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ann McMonigal">
-<meta name="dcterms.date" content="2024-02-07">
-<meta name="description" content="The n_distinct() function counts the number of unique values in a vector">
+<meta name="author" content="Cirell Alfonso">
+<meta name="description" content="Update with brief descirption of function">
 
-<title>Function of the week for BSTA526 Winter 24 - n_distinct</title>
+<title>Function of the week for BSTA526 Winter 24 - dplyr::slice_sample</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4520,7 +4519,7 @@ vertical-align: -.125em;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./function_of_the_week_McMonigal.html">dplyr::n_distinct</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./function_of_the_week_CIRELL_ALFONSO.html">dplyr::slice_sample</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label onclick="window.quartoOpenSearch();">
@@ -4548,13 +4547,13 @@ vertical-align: -.125em;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./function_of_the_week_McMonigal.html" class="sidebar-item-text sidebar-link active">
+  <a href="./function_of_the_week_McMonigal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">dplyr::n_distinct</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./function_of_the_week_CIRELL_ALFONSO.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./function_of_the_week_CIRELL_ALFONSO.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">dplyr::slice_sample</span></a>
   </div>
 </li>
@@ -4574,11 +4573,11 @@ vertical-align: -.125em;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dplyrn_distinct" id="toc-dplyrn_distinct" class="nav-link active" data-scroll-target="#dplyrn_distinct"><span class="header-section-number">1</span> <code>dplyr::n_distinct</code></a>
+  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link active" data-scroll-target="#submission-instructions"><span class="header-section-number">1</span> Submission Instructions</a></li>
+  <li><a href="#slice_sample" id="toc-slice_sample" class="nav-link" data-scroll-target="#slice_sample"><span class="header-section-number">2</span> slice_sample( )</a>
   <ul class="collapse">
-  <li><a href="#what-is-it-for" id="toc-what-is-it-for" class="nav-link" data-scroll-target="#what-is-it-for"><span class="header-section-number">1.1</span> What is it for?</a></li>
-  <li><a href="#example-using-starwars" id="toc-example-using-starwars" class="nav-link" data-scroll-target="#example-using-starwars"><span class="header-section-number">1.2</span> Example using starwars</a></li>
-  <li><a href="#is-n_distinct-helpful" id="toc-is-n_distinct-helpful" class="nav-link" data-scroll-target="#is-n_distinct-helpful"><span class="header-section-number">1.3</span> Is n_distinct() helpful?</a></li>
+  <li><a href="#what-is-it-for" id="toc-what-is-it-for" class="nav-link" data-scroll-target="#what-is-it-for"><span class="header-section-number">2.1</span> What is it for?</a></li>
+  <li><a href="#is-it-helpful" id="toc-is-it-helpful" class="nav-link" data-scroll-target="#is-it-helpful"><span class="header-section-number">2.2</span> Is it helpful?</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4588,13 +4587,13 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">n_distinct</h1>
+<h1 class="title">dplyr::slice_sample</h1>
 <p class="subtitle lead">Function of the Week</p>
 </div>
 
 <div>
   <div class="description">
-    The n_distinct() function counts the number of unique values in a vector
+    Update with brief descirption of function
   </div>
 </div>
 
@@ -4604,14 +4603,14 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Ann McMonigal </p>
+             <p>Cirell Alfonso </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 7, 2024</p>
+      <p class="date">Invalid Date</p>
     </div>
   </div>
   
@@ -4621,141 +4620,107 @@ vertical-align: -.125em;
 
 </header>
 
-<section id="dplyrn_distinct" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> <code>dplyr::n_distinct</code></h1>
-<p>In this document, I will introduce the <code>n_distinct()</code> function from dplyr and show what it’s for.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load dplyr</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: &#39;dplyr&#39;</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#example dataset</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="what-is-it-for" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-it-for"><span class="header-section-number">1.1</span> What is it for?</h2>
-<p>The <code>n_distinct()</code> function counts the number of unique values in a vector or set of vectors. It has two arguments:</p>
+<section id="submission-instructions" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Submission Instructions</h1>
+<p>Please sign up for a function here (Enter your name and the week you want to present): <a href="https://docs.google.com/spreadsheets/d/12UhvFUBeuzKqa3BIUkoq61-d8uaSeaV_R4nNoRqd7Ro/edit?usp=sharing">function_of_the_week_signup_2024</a></p>
+<p>For this assignment, please submit both the <code>.qmd</code> and the <code>.html</code> files. I will add it to the website. Remove your name from the qmd if you do not wish it shared or let us know if it is okay to post in anonymously.</p>
+<p>Make sure to update the title, description, author, and date in the yaml above.</p>
+<p>Previous years’ Functions of the Week can be found on the previous class websites:</p>
 <ul>
-<li><p><code>...</code> : One or more vectors from your dataset.</p></li>
-<li><p><code>na.rm</code> : Can equal <code>TRUE</code> or <code>FALSE</code>.</p></li>
+<li><a href="https://sph-r-programming-2023.netlify.app/functions/" class="uri">https://sph-r-programming-2023.netlify.app/functions/</a></li>
+<li><a href="https://sph-r-programming-2022.netlify.app/functions/" class="uri">https://sph-r-programming-2022.netlify.app/functions/</a></li>
+<li><a href="https://sph-r-programming.netlify.app/functions/" class="uri">https://sph-r-programming.netlify.app/functions/</a> (2021)</li>
 </ul>
-<p>The default is <code>na.rm = FALSE</code>, meaning missing values are included in the count of distinct values by default. If <code>TRUE</code>, missing values will be excluded from the count of distinct values.</p>
+<p>If you select a function which was presented previously, please develop your own examples and content.</p>
 </section>
-<section id="example-using-starwars" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="example-using-starwars"><span class="header-section-number">1.2</span> Example using starwars</h2>
+<section id="slice_sample" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> slice_sample( )</h1>
+<p>In this document, I will introduce the slice_sample( ) function and show what it’s for.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s see what is in our dataset.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 87
-Columns: 14
-$ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or…
-$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
-$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
-$ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N…
-$ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;…
-$ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;,…
-$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
-$ sex        &lt;chr&gt; &quot;male&quot;, &quot;none&quot;, &quot;none&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,…
-$ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;femini…
-$ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;T…
-$ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma…
-$ films      &lt;list&gt; &lt;&quot;The Empire Strikes Back&quot;, &quot;Revenge of the Sith&quot;, &quot;Return…
-$ vehicles   &lt;list&gt; &lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, &quot;Imp…
-$ starships  &lt;list&gt; &lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanced x1&quot;,…</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="what-is-it-for" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-it-for"><span class="header-section-number">2.1</span> What is it for?</h2>
+<p>Slice_sample( ) from the dplyr package randomly selects a row from a dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s use n_distinct on a categorical variable, such as species.</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(starwars<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 38</code></pre>
+<pre><code>               mpg cyl  disp hp drat    wt  qsec vs am gear carb
+Toyota Corona 21.5   4 120.1 97  3.7 2.465 20.01  1  0    3    1</code></pre>
 </div>
 </div>
+<p>There are various useful arguments in the slice_sample( ) function. We can add <em>n</em> to select a set number of rows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s examine how na.rm works.</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(starwars<span class="sc">$</span>hair_color, <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars,<span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
+<pre><code>                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
 </div>
 </div>
+<p>We can also use <em>prop</em> if we want to sample a proportion of samples available in the data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now let&#39;s change to na.rm = TRUE</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(starwars<span class="sc">$</span>hair_color, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars, <span class="at">prop=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12</code></pre>
+<pre><code>                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</code></pre>
 </div>
 </div>
+<p>The default has it where replacement is <em>false.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s try with multiple vectors. Missing values will be included in the count.</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(starwars<span class="sc">$</span>hair_color, starwars<span class="sc">$</span>eye_color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars, <span class="at">n=</span><span class="dv">6</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">replace=</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 35</code></pre>
+<pre><code>                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Hornet 4 Drive...1 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Toyota Corona      21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Porsche 914-2      26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Camaro Z28         13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Hornet 4 Drive...5 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Volvo 142E         21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
 </div>
 </div>
+<p>Lastly, we can add <em>weight_by</em> to add sampling weights to any non-negative vectors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#What are the distinct pairs?</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(eye_color, hair_color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars, <span class="at">n=</span><span class="dv">5</span>, <span class="at">weight_by =</span> wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 35 × 2
-   eye_color hair_color   
-   &lt;chr&gt;     &lt;chr&gt;        
- 1 blue      blond        
- 2 yellow    &lt;NA&gt;         
- 3 red       &lt;NA&gt;         
- 4 yellow    none         
- 5 brown     brown        
- 6 blue      brown, grey  
- 7 blue      brown        
- 8 brown     black        
- 9 blue-gray auburn, white
-10 blue      auburn, grey 
-# ℹ 25 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(tibble1 <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(eye_color) <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n_distinct</span>(hair_color)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 2
-   eye_color     count
-   &lt;chr&gt;         &lt;int&gt;
- 1 black             2
- 2 blue              8
- 3 blue-gray         1
- 4 brown             4
- 5 dark              1
- 6 gold              1
- 7 green, yellow     1
- 8 hazel             2
- 9 orange            2
-10 pink              1
-11 red               2
-12 red, blue         1
-13 unknown           2
-14 white             1
-15 yellow            6</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(tibble1<span class="sc">$</span>count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 35</code></pre>
+<pre><code>                     mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Ferrari Dino        19.7   6  145 175 3.62 2.770 15.50  0  1    5    6
+Dodge Challenger    15.5   8  318 150 2.76 3.520 16.87  0  0    3    2
+Lincoln Continental 10.4   8  460 215 3.00 5.424 17.82  0  0    3    4
+Cadillac Fleetwood  10.4   8  472 205 2.93 5.250 17.98  0  0    3    4
+Duster 360          14.3   8  360 245 3.21 3.570 15.84  0  0    3    4</code></pre>
 </div>
 </div>
 </section>
-<section id="is-n_distinct-helpful" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="is-n_distinct-helpful"><span class="header-section-number">1.3</span> Is n_distinct() helpful?</h2>
-<p>The function <code>n_distinct()</code> is helpful for data exploration for categorical variables because it quickly counts the number of distinct values.</p>
-<p>However, <code>n_distinct()</code> on its own is not very powerful, and the function is more helpful when used in combination with other functions.</p>
+<section id="is-it-helpful" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="is-it-helpful"><span class="header-section-number">2.2</span> Is it helpful?</h2>
+<blockquote class="blockquote">
+<p>This function is definitely helpful. In larger data set, we can get a smaller random sample fairly easily.</p>
+</blockquote>
 
 
 </section>

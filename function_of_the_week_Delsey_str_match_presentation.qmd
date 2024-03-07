@@ -1,0 +1,186 @@
+---
+title: "stringr::str-match"
+subtitle: "Function of the Week"
+author: "Trevor Delsey"
+date: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+options(max.print = 20)
+```
+
+
+# `stringr::str_match`
+
+In this document, I will introduce the str_match function and show what it's for.
+
+```{r}
+#load tidyverse up
+library(tidyverse)
+#example dataset
+library(palmerpenguins)
+data(penguins)
+```
+
+## What is it for?
+
+The function str_match takes a character vector and a regex pattern and returns the first time that the pattern appears in each element of the vector. Specifically str_match will return a matrix of all of the matches. We will get to what that means later.
+
+To explain this let's remind ourselves what a character vector is:
+
+```{r}
+character_vector <- c("This", "is an", "example")
+typeof(character_vector)
+```
+
+Next we need to know a few regular expression (regex) special characters. There are quite a number of them so I will just define the ones I will be using here:
+
+```         
+"" regular expressions will be placed inside of quotation marks.
+"[Aa]" This will match with either an upper case or lower case "A".
+"A" this will only match an upper case "A".
+"A+" this will match with an A followed by any number of repeated A's 
+"[A-Za-z]" will match with any letter upper or lower case
+"." will match with any character
+"^a" will match with any a at the start of the string
+"a$" will match with any a at the end of the string
+```
+
+Here is the data we will be working with
+
+```{r}
+words_df <- as_tibble(words)
+sentences_vec <- sentences
+
+words %>% head(20)
+head(sentences_vec)
+
+length(words)
+```
+
+Lets try to collect every observation in sentences_vec that contains the letters "th"
+
+```{r}
+# we can see that it returns only the matched portion
+str_match(sentences_vec, "th")
+
+# if we want the whole string that contains the th we can add a few more operators
+
+# adding the . operator looks for a th between any other characters
+str_match(sentences_vec, ".th.")
+# and if we finally add the + we will get the entire string
+str_match(sentences_vec, ".+th.+")
+```
+
+## Let's look at some complications with str_match
+
+```{r}
+# recall that words_df is a tibble rather than a vector 
+
+# here we see that str_match does not like recieving an entire data frame
+# even if that data frame only contains one column
+
+words_df %>% 
+  str_match(".+th.+")
+
+```
+
+
+```{r}
+# and now it will work fine
+words_df$value %>% 
+  str_match(".+th.+")
+```
+
+Another problem you might encounter
+
+```{r}
+# Notice how the column name is not what I asked it to be
+
+words_df %>% 
+  mutate(the = str_match(value, ".+the.+")) %>% 
+  drop_na(the)
+```
+
+This is because the output of str_match is a matrix. In this case we have a matrix with only a single vector in it so it works to make the new column but the name is all messed up. 
+
+To fix this issue we should just use str_extract which is a very closely related function that returns a vector of matches rather than a matrix
+
+```{r}
+# and we can see this fixes the issue
+
+words_df %>% 
+  mutate(the = str_extract(value, ".+the.+")) %>% 
+  drop_na(the)
+```
+
+## So why does str_match return a matrix at all?
+
+str_match returns a matrix because it is possible for a regex to return multiple different groups of characters. We won't go into regex groups because it can get fairly complicated but here is an example of what the output would look like.
+
+```{r}
+# Here I asked str_match to split the match into two groups and it assigned each one a column in the matrix
+
+penguins_raw$studyName %>% 
+  str_match("([A-Z]+)(\\d+)")
+```
+
+## str_match_all
+
+Finally we have str_match_all which returns every time the pattern is matched rather than just the first time in an observation.
+
+```{r}
+str_match_all(sentences, ".t.")[1]
+
+# compare this with
+
+str_match(sentences, ".t.")[1]
+
+# now lets see the difference in the sentence
+
+sentences[1]
+
+```
+
+
+## Is it helpful?
+
+> Discuss whether you think this function is useful for you and your work. Is it the best thing since sliced bread, or is it not really relevant to your work?
+
+Yes, I believe it is very helpful but I also must admit it can feel very finicky to use. First you need to get the regex right. Then you need to deal with the output and input not always working nicely with dplyr. 
+
+I believe one of the big uses for str_match is for finding things like phone numbers in large character vectors.
+
+Here is what I think may be a more real world usage of str_match:
+```{r}
+penguins_raw %>% 
+  select(Comments)
+
+# Looking at the penguin_raw data there is a comments variable. If I were to want to find all observations that included a comment referencing a nest I could do so like this:
+
+penguins_raw %>%  
+  mutate(match = str_match(Comments, pattern = ".*[Nn]est.*")) %>% 
+  filter(!is.na(match)) %>% 
+  select(match, everything())
+```
+
+

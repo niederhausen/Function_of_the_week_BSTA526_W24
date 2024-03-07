@@ -32,12 +32,17 @@ website:
       - href: function_of_the_week_Cristancho.qmd
         text: tidyr::uncount()  
       - href: function_of_the_week_Chapela.qmd
-        text: janitor::get_dupes      
+        text: janitor::get_dupes
+      - href: function_of_the_week_Delsey_str_match_presentation.qmd
+        text: stringr::str-match         
       - href: function_of_the_week_ECHALUSE.qmd
         text: lubridate::ceiling_date()
       - href: function_of_the_week_Clem_write.xlsx.qmd
         text: openxlsx::write.xlsx()
-            
+   
+
+
+         
 format:
   html:
     theme: minty

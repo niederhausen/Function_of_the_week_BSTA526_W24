@@ -26,6 +26,8 @@ website:
 
       - href: function_of_the_week_McMonigal.qmd
         text: dplyr::n_distinct  
+      - href: function_of_the_week_KELLY.qmd
+        text: dplyr::near()  
       - href: function_of_the_week_CIRELL_ALFONSO.qmd
         text: dplyr::slice_sample  
       - href: function_of_the_week_Higbee.qmd

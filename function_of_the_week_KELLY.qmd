@@ -1,0 +1,123 @@
+---
+title: "dplyr::near()"
+subtitle: "Function of the Week"
+description: "Compare two numeric vectors"
+author: "Susan Sotka Kelly"
+date: "February 21, 2024"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  gtsummary,     # summary statistics and tests
+  janitor,       # for data cleaning, making tables
+  palmerpenguins # penguins data set for the homework
+)
+
+data(penguins)
+```
+# `dplyr::near()`
+
+In this document, I will introduce the `near()` function and show what it's for.
+
+## What is it for?
+
+Let's say we wanted to test for equivalency between 2 numeric vectors. Many might approach this situation using `==` to compare the two, which we will see does not always work the way we might intend.
+
+We'll start with a simple example (adapted from Wickham et al. 2023). First I will create a numeric vector with just 2 values.
+
+```{r}
+#Create a vector with 2 values:
+x <- c(1/49*49, sqrt(2)^2)
+
+# Check the values of vector x:
+x
+```
+So if the values of the vector `x` are `(1,2)`, what will happen if I test this vector for equality using `==` with another numeric vector `y` which also has the values of `(1,2)`?
+
+```{r}
+#Create a y vector with the same 2 values (1,2):
+y <- c(1,2)
+
+#Test the x and y vectors for equality with each other using ==:
+x == y
+```
+What happened?? Let's take a closer look at the values of x, which we can see in more detail by using the `print()` function, and specifying the number of decimal points we want to see in the output.
+
+```{r}
+#Check the exact values of vector x
+print(x, digits = 16)
+```
+This output shows us that R actually defaults to rounding up when we ask it to show us the values of the vector `x` with the usual command `x`, but it still knows the values aren't exactly `(1,2)`, which is why it told us `FALSE FALSE` when we tested vector `x` for equality with vector `y`.
+
+In these situations, the `near()` function could be more useful, as it ignores very small differences.
+
+```{r}
+#Test the x and y vectors for equality with each other using near():
+near(x, y)
+```
+Let's try using the `near()` function now with a data set, we will come back to the ol' `penguins` we all know and love. What if, for example, we wanted to check if the bill length of male penguins is similar to the bill length of female penguins in the sample.
+
+In using `near()`, first you've got to be sure the vectors you are comparing have the same number of values. So we'll adjust our data set slightly, dropping those with bill lengths greater than 55 mm to ensure we are comparing the same number of males to females.
+
+```{r}
+#Reduce the data set to just bill length and sex
+penguins_reduced <- penguins %>% 
+  select(bill_length_mm,
+         sex)
+
+#Create a vector with bill length values for male penguins
+penguins_male <- penguins_reduced %>% 
+  filter(sex == "male" &
+           bill_length_mm < 55)
+
+#Create a vector with bill length values for female penguins
+penguins_female <- penguins_reduced %>% 
+  filter(sex == "female" &
+           bill_length_mm < 55)
+```
+Now we have our 2 vectors to compare, with n= 164 each. When testing for equality, the `near` function has a specification we can use for the level of difference we want it to tolerate. Let's set it to a tolerance level of 1 mm.
+
+```{r}
+#Test for equality using near(), with our tolerance specification:
+near(penguins_male$bill_length_mm, penguins_female$bill_length_mm, tol = 1)
+```
+Hmm, ok, but maybe it would be useful if I could see some kind of summary of this output...
+
+```{r}
+count_TRUE <- near(penguins_male$bill_length_mm, penguins_female$bill_length_mm, tol = 1)
+tabyl(count_TRUE)
+```
+
+## Is it helpful?
+
+I think the `near()` function could be helpful in certain situations. One type of situation would be when exploring a data set, to obtain rough estimates of certain questions, without having to initially get too precise about the values.
+
+Another type of situation could be in exploring repeated measures data. Imagine for example in the `penguins` data set, if it included measurements from the same penguins over time, starting when they were born. The `near()` function could be used to explore whether the penguins grow at roughly similar rates.
+
+Thoughts or questions?
+
+References:
+
+Wickham, H., Çetinkaya-Rundel, M., and Grolemund, G. (2023). R for Data Science (2e). https://r4ds.hadley.nz

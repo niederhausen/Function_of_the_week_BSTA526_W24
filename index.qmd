@@ -19,7 +19,7 @@ link-external-newwindow: true
 :::
 
 ::: g-col-8
-# Function of the Week 
+# Functions of the Week 
 
 ### BSTA526 Winter 2024
 

@@ -4,7 +4,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Function of the week for BSTA526 Winter 24"
+  title: "Functions of the week for BSTA526 Winter 2024"
   navbar:
     background: primary
     search: true

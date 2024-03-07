@@ -1,0 +1,102 @@
+---
+title: "Function of the Week: "
+subtitle: "janitor::get_dupes"
+author: "Sofia Chapela Lara"
+date: "today"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `janitor::get_dupes()`
+
+In this document, I will introduce the `get_dupes()` function and show what it's for.
+This function is part of the janitor package so will need to load `janitor` first.
+
+```{r}
+#loading janitor
+library(janitor)
+```
+
+## What is it for?
+
+> This function is quite simple but useful, specially when we are working with big data frames. It basically identifies duplicate rows in a given data frame.
+
+> Here is an example to illustrate how it works:
+
+> First, I will input a data frame which I will call example:
+
+```{r}
+example <- data.frame(
+  ID = c(01,02,03,04,05,06,07,08,09,10,06,12,13,07,15,16,17,06),
+  group = c("T", "T", "C", "C", "C", "T", "T", "C", "T", "C", "C", "C", "T", "T", "C", "C","T","C"),
+  age = c(26, 26, 22, 25, 29, 33, 26, 32, 33, 31, 35, 32, 24, 25, 28, 20, 29, 35))
+example
+```
+
+> Since this is a small data frame, we can visually inspect it and notice that participants with ID numbers 6 and 7 are repeated. However, if our data set were larger, identifying duplicates visually would be a tedious and error-prone process. 
+
+> Now, we can use `get_dupes()` following this format: `get_dupes (dat, ...)` where:
+
+>`dat` name of the data frame
+
+>`...` names of the variables to search for duplicates (**unquoted**)
+
+
+```{r}
+get_dupes(example, ID)
+```
+
+> The output will give us the rows with duplicate records in the specified variable (ID) and a count of the duplicates (dupe_count)
+
+> We corroborated here that ID number 6 is repeated 3 times and ID 7 is repeated 2 times.
+
+> We can also use pipes with the `get_dupes` function:
+
+```{r}
+example |>
+  get_dupes(age)
+```
+
+> The output will provide us with the duplicates for age. We can observe that it will order them in descending order, with the most frequently repeated observations appearing at the top of the table. Here, we notice that age 26 is repeated 3 times, age 25 is repeated 2 times, and so forth. This results are not very informative, so we need to be careful to select a meaningful variable to account for duplicates.
+
+> If we don't specify any variables, `get_dupes` will look for duplicates using all columns
+
+```{r}
+example |>
+  get_dupes()
+```
+
+> Here, we have two rows with the exact same values in all columns.
+
+> We can also use tidyselect helpers. For example, we can look for duplicates among all variables except age:
+
+```{r}
+example |>
+  get_dupes(-age)
+```
+
+> Even though the output displays a column for age, it is not accounting for the repeated age records as it did before.
+
+## Is it helpful?
+
+> Yes, this function can save us a lot of time during the data cleaning process. I use it at early stages of data analysis to identify potential coding errors. For me, it is especially useful to use it before merging datasets to ensure we have only one ID code per subject.

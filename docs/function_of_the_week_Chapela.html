@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Cirell Alfonso">
-<meta name="description" content="Update with brief descirption of function">
+<meta name="author" content="Sofia Chapela Lara">
+<meta name="dcterms.date" content="2024-03-06">
 
-<title>Function of the week for BSTA526 Winter 24 - dplyr::slice_sample</title>
+<title>Function of the week for BSTA526 Winter 24 - Function of the Week:</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4515,7 +4515,7 @@ vertical-align: -.125em;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./function_of_the_week_CIRELL_ALFONSO.html">dplyr::slice_sample</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./function_of_the_week_Chapela.html">janitor::get_dupes</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label onclick="window.quartoOpenSearch();">
@@ -4549,8 +4549,14 @@ vertical-align: -.125em;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./function_of_the_week_CIRELL_ALFONSO.html" class="sidebar-item-text sidebar-link active">
+  <a href="./function_of_the_week_CIRELL_ALFONSO.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">dplyr::slice_sample</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./function_of_the_week_Chapela.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">janitor::get_dupes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -4569,11 +4575,10 @@ vertical-align: -.125em;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#submission-instructions" id="toc-submission-instructions" class="nav-link active" data-scroll-target="#submission-instructions"><span class="header-section-number">1</span> Submission Instructions</a></li>
-  <li><a href="#slice_sample" id="toc-slice_sample" class="nav-link" data-scroll-target="#slice_sample"><span class="header-section-number">2</span> slice_sample( )</a>
+  <li><a href="#janitorget_dupes" id="toc-janitorget_dupes" class="nav-link active" data-scroll-target="#janitorget_dupes"><span class="header-section-number">1</span> <code>janitor::get_dupes()</code></a>
   <ul class="collapse">
-  <li><a href="#what-is-it-for" id="toc-what-is-it-for" class="nav-link" data-scroll-target="#what-is-it-for"><span class="header-section-number">2.1</span> What is it for?</a></li>
-  <li><a href="#is-it-helpful" id="toc-is-it-helpful" class="nav-link" data-scroll-target="#is-it-helpful"><span class="header-section-number">2.2</span> Is it helpful?</a></li>
+  <li><a href="#what-is-it-for" id="toc-what-is-it-for" class="nav-link" data-scroll-target="#what-is-it-for"><span class="header-section-number">1.1</span> What is it for?</a></li>
+  <li><a href="#is-it-helpful" id="toc-is-it-helpful" class="nav-link" data-scroll-target="#is-it-helpful"><span class="header-section-number">1.2</span> Is it helpful?</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4583,15 +4588,10 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">dplyr::slice_sample</h1>
-<p class="subtitle lead">Function of the Week</p>
+<h1 class="title">Function of the Week:</h1>
+<p class="subtitle lead">janitor::get_dupes</p>
 </div>
 
-<div>
-  <div class="description">
-    Update with brief descirption of function
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -4599,14 +4599,14 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Cirell Alfonso </p>
+             <p>Sofia Chapela Lara </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
+      <p class="date">March 6, 2024</p>
     </div>
   </div>
   
@@ -4616,106 +4616,156 @@ vertical-align: -.125em;
 
 </header>
 
-<section id="submission-instructions" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Submission Instructions</h1>
-<p>Please sign up for a function here (Enter your name and the week you want to present): <a href="https://docs.google.com/spreadsheets/d/12UhvFUBeuzKqa3BIUkoq61-d8uaSeaV_R4nNoRqd7Ro/edit?usp=sharing">function_of_the_week_signup_2024</a></p>
-<p>For this assignment, please submit both the <code>.qmd</code> and the <code>.html</code> files. I will add it to the website. Remove your name from the qmd if you do not wish it shared or let us know if it is okay to post in anonymously.</p>
-<p>Make sure to update the title, description, author, and date in the yaml above.</p>
-<p>Previous years’ Functions of the Week can be found on the previous class websites:</p>
-<ul>
-<li><a href="https://sph-r-programming-2023.netlify.app/functions/" class="uri">https://sph-r-programming-2023.netlify.app/functions/</a></li>
-<li><a href="https://sph-r-programming-2022.netlify.app/functions/" class="uri">https://sph-r-programming-2022.netlify.app/functions/</a></li>
-<li><a href="https://sph-r-programming.netlify.app/functions/" class="uri">https://sph-r-programming.netlify.app/functions/</a> (2021)</li>
-</ul>
-<p>If you select a function which was presented previously, please develop your own examples and content.</p>
-</section>
-<section id="slice_sample" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> slice_sample( )</h1>
-<p>In this document, I will introduce the slice_sample( ) function and show what it’s for.</p>
+<section id="janitorget_dupes" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> <code>janitor::get_dupes()</code></h1>
+<p>In this document, I will introduce the <code>get_dupes()</code> function and show what it’s for. This function is part of the janitor package so will need to load <code>janitor</code> first.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#loading janitor</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.3     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.3     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre><code>
+Attaching package: &#39;janitor&#39;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="what-is-it-for" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-it-for"><span class="header-section-number">2.1</span> What is it for?</h2>
-<p>Slice_sample( ) from the dplyr package randomly selects a row from a dataset.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>               mpg cyl  disp hp drat    wt  qsec vs am gear carb
-Toyota Corona 21.5   4 120.1 97  3.7 2.465 20.01  1  0    3    1</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    chisq.test, fisher.test</code></pre>
 </div>
 </div>
-<p>There are various useful arguments in the slice_sample( ) function. We can add <em>n</em> to select a set number of rows.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars,<span class="at">n=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
-Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
-Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
-Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
-Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
-</div>
-</div>
-<p>We can also use <em>prop</em> if we want to sample a proportion of samples available in the data set.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars, <span class="at">prop=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
-Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
-AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
-Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
-Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
-Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
-Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
-Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</code></pre>
-</div>
-</div>
-<p>The default has it where replacement is <em>false.</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars, <span class="at">n=</span><span class="dv">6</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">replace=</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-Hornet 4 Drive...1 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
-Toyota Corona      21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
-Porsche 914-2      26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
-Camaro Z28         13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
-Hornet 4 Drive...5 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
-Volvo 142E         21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
-</div>
-</div>
-<p>Lastly, we can add <em>weight_by</em> to add sampling weights to any non-negative vectors.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(mtcars, <span class="at">n=</span><span class="dv">5</span>, <span class="at">weight_by =</span> wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     mpg cyl disp  hp drat    wt  qsec vs am gear carb
-Ferrari Dino        19.7   6  145 175 3.62 2.770 15.50  0  1    5    6
-Dodge Challenger    15.5   8  318 150 2.76 3.520 16.87  0  0    3    2
-Lincoln Continental 10.4   8  460 215 3.00 5.424 17.82  0  0    3    4
-Cadillac Fleetwood  10.4   8  472 205 2.93 5.250 17.98  0  0    3    4
-Duster 360          14.3   8  360 245 3.21 3.570 15.84  0  0    3    4</code></pre>
-</div>
-</div>
-</section>
-<section id="is-it-helpful" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="is-it-helpful"><span class="header-section-number">2.2</span> Is it helpful?</h2>
+<section id="what-is-it-for" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-it-for"><span class="header-section-number">1.1</span> What is it for?</h2>
 <blockquote class="blockquote">
-<p>This function is definitely helpful. In larger data set, we can get a smaller random sample fairly easily.</p>
+<p>This function is quite simple but useful, specially when we are working with big data frames. It basically identifies duplicate rows in a given data frame.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Here is an example to illustrate how it works:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>First, I will input a data frame which I will call example:</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="fu">c</span>(<span class="dv">01</span>,<span class="dv">02</span>,<span class="dv">03</span>,<span class="dv">04</span>,<span class="dv">05</span>,<span class="dv">06</span>,<span class="dv">07</span>,<span class="dv">08</span>,<span class="dv">09</span>,<span class="dv">10</span>,<span class="dv">06</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">07</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">06</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;T&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;C&quot;</span>,<span class="st">&quot;T&quot;</span>,<span class="st">&quot;C&quot;</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">29</span>, <span class="dv">33</span>, <span class="dv">26</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="dv">31</span>, <span class="dv">35</span>, <span class="dv">32</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">20</span>, <span class="dv">29</span>, <span class="dv">35</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID group age
+1   1     T  26
+2   2     T  26
+3   3     C  22
+4   4     C  25
+5   5     C  29
+6   6     T  33
+7   7     T  26
+8   8     C  32
+9   9     T  33
+10 10     C  31
+11  6     C  35
+12 12     C  32
+13 13     T  24
+14  7     T  25
+15 15     C  28
+16 16     C  20
+17 17     T  29
+18  6     C  35</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Since this is a small data frame, we can visually inspect it and notice that participants with ID numbers 6 and 7 are repeated. However, if our data set were larger, identifying duplicates visually would be a tedious and error-prone process.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Now, we can use <code>get_dupes()</code> following this format: <code>get_dupes (dat, ...)</code> where:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>dat</code> name of the data frame</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>...</code> names of the variables to search for duplicates (<strong>unquoted</strong>)</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_dupes</span>(example, ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID dupe_count group age
+1  6          3     T  33
+2  6          3     C  35
+3  6          3     C  35
+4  7          2     T  26
+5  7          2     T  25</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The output will give us the rows with duplicate records in the specified variable (ID) and a count of the duplicates (dupe_count)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>We corroborated here that ID number 6 is repeated 3 times and ID 7 is repeated 2 times.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>We can also use pipes with the <code>get_dupes</code> function:</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dupes</span>(age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   age dupe_count ID group
+1   26          3  1     T
+2   26          3  2     T
+3   26          3  7     T
+4   25          2  4     C
+5   25          2  7     T
+6   29          2  5     C
+7   29          2 17     T
+8   32          2  8     C
+9   32          2 12     C
+10  33          2  6     T
+11  33          2  9     T
+12  35          2  6     C
+13  35          2  6     C</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The output will provide us with the duplicates for age. We can observe that it will order them in descending order, with the most frequently repeated observations appearing at the top of the table. Here, we notice that age 26 is repeated 3 times, age 25 is repeated 2 times, and so forth. This results are not very informative, so we need to be careful to select a meaningful variable to account for duplicates.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>If we don’t specify any variables, <code>get_dupes</code> will look for duplicates using all columns</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dupes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No variable names specified - using all columns.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID group age dupe_count
+1  6     C  35          2
+2  6     C  35          2</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Here, we have two rows with the exact same values in all columns.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>We can also use tidyselect helpers. For example, we can look for duplicates among all variables except age:</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dupes</span>(<span class="sc">-</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID group dupe_count age
+1  6     C          2  35
+2  6     C          2  35
+3  7     T          2  26
+4  7     T          2  25</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Even though the output displays a column for age, it is not accounting for the repeated age records as it did before.</p>
+</blockquote>
+</section>
+<section id="is-it-helpful" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="is-it-helpful"><span class="header-section-number">1.2</span> Is it helpful?</h2>
+<blockquote class="blockquote">
+<p>Yes, this function can save us a lot of time during the data cleaning process. I use it at early stages of data analysis to identify potential coding errors. For me, it is especially useful to use it before merging datasets to ensure we have only one ID code per subject.</p>
 </blockquote>
 
 

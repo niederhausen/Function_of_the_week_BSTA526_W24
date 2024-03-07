@@ -29,6 +29,8 @@ website:
         text: dplyr::n_distinct  
       - href: function_of_the_week_CIRELL_ALFONSO.qmd
         text: dplyr::slice_sample  
+      - href: function_of_the_week_Cristancho.qmd
+        text: tidyr::uncount()  
       - href: function_of_the_week_Chapela.qmd
         text: janitor::get_dupes      
       - href: function_of_the_week_ECHALUSE.qmd

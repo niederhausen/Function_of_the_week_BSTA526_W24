@@ -1,0 +1,103 @@
+---
+title: "tidyr::uncount()"
+subtitle: "Function of the Week"
+author: "Cesar Cristancho"
+date: "02/21/2024"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+      self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `uncount()`
+
+### Package/library: `tidyr`
+
+```{r}
+#| include: false
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(palmerpenguins)
+library(gt)
+library(broom)
+library(janitor)
+data(penguins)
+```
+
+## What is it for?
+
+### "Uncount" a data frame:
+
+**Duplicate rows according to a weighting variable.**
+
+Performs the opposite operation to dplyr::count(), duplicating rows according to a weighting variable (or expression). Therefore, [**expand counts into multiple rows**](https://community.rstudio.com/t/how-to-uncount-expand-counts-into-multiple-rows/6459).
+
+> **Usage:** `uncount(data, weights, ..., .remove = TRUE, .id = NULL)`
+
+> **Arguments**
+
+-   **data**\
+    A data frame, tibble, or grouped tibble.
+
+-   **weights** (integer)\
+    A vector of weights. Evaluated in the context of data; supports quasi-quotation.
+
+-   .remove\
+    If TRUE, and "weights" is the name of a column in the data, then this column is removed.
+
+-   **.id**\
+    Supply a string to create a new variable which gives a unique identifier for each created row.
+
+-   ... Additional arguments passed on to methods.\
+
+```{r}
+glimpse(penguins)
+uncount (penguins, 2) #duplicate the rows
+uncount (penguins, 1, .id = "id") # adding consecutive ID
+# uncount (penguins$island, 1, .id = "id"): error!
+```
+
+
+```{r}
+island <- penguins %>% distinct (island)
+island %>% gt()
+
+new_island <- uncount (island,3)
+new_island %>% group_by(island) %>%  count() %>% gt ()
+```
+
+*If you have a data frame with a column representing the number in each group (frequency table), and you want to create a new data frame "unfolding" this table, with each row representing a single observation. Replicate each row based on the number in that group.*
+
+
+```{r}
+table_1 <- penguins %>% count (island)
+table_1 %>% gt() 
+
+duplicate_p <- uncount (table_1, n, .id = "id")
+glimpse(duplicate_p) #`only 2 columns`
+
+penguins <- penguins %>% arrange(island)
+all(penguins$island == duplicate_p$island) 
+```
+
+
+## Is it helpful?
+
+> Multiplicate rows according to a key and weigth, or created a consecutive ID.
+
+> This can be useful for tasks like expanding data to represent individual occurrences within a group or category.

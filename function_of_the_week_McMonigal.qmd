@@ -1,0 +1,92 @@
+---
+title: "n_distinct"
+subtitle: "Function of the Week"
+description: "The n_distinct() function counts the number of unique values in a vector"
+author: "Ann McMonigal"
+date: "2/7/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `dplyr::n_distinct`
+
+In this document, I will introduce the `n_distinct()` function from dplyr and show what it's for.
+
+```{r}
+#load dplyr
+library(dplyr)
+#example dataset
+data(starwars)
+```
+
+## What is it for?
+
+The `n_distinct()` function counts the number of unique values in a vector or set of vectors. It has two arguments:
+
++ `...` : One or more vectors from your dataset.
+
++ `na.rm` : Can equal `TRUE` or `FALSE`.
+
+The default is `na.rm = FALSE`, meaning missing values are included in the count of distinct values by default. If `TRUE`, missing values will be excluded from the count of distinct values. 
+
+## Example using starwars
+
+```{r}
+#Let's see what is in our dataset.
+glimpse(starwars)
+```
+
+```{r}
+#Let's use n_distinct on a categorical variable, such as species.
+n_distinct(starwars$species)
+```
+
+```{r}
+#Let's examine how na.rm works.
+n_distinct(starwars$hair_color, na.rm = FALSE)
+```
+
+```{r}
+#Now let's change to na.rm = TRUE
+n_distinct(starwars$hair_color, na.rm = TRUE)
+```
+
+```{r}
+#Let's try with multiple vectors. Missing values will be included in the count.
+n_distinct(starwars$hair_color, starwars$eye_color)
+```
+
+```{r}
+#What are the distinct pairs?
+starwars %>% distinct(eye_color, hair_color)
+(tibble1 <- starwars %>% group_by(eye_color) %>%
+  summarise(count = n_distinct(hair_color)))
+sum(tibble1$count)
+```
+
+## Is n_distinct() helpful?
+
+The function `n_distinct()` is helpful for data exploration for categorical variables because it quickly counts the number of distinct values.
+
+However, `n_distinct()` on its own is not very powerful, and the function is more helpful when used in combination with other functions.

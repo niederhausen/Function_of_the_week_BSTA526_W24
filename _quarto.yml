@@ -14,8 +14,6 @@ website:
     right:
       - href: index.qmd
         text: Home
-      - href: schedule.qmd
-        text: Schedule
       - href: presentations.qmd
         text: Presentations
 
@@ -26,10 +24,11 @@ website:
     contents:
       - href: index.qmd
         text: Home
-      - href: schedule.qmd
-        text: Schedule
-      - href: weeks.qmd
-        text: Weeks
+      - href: function_of_the_week_McMonigal.qmd
+        text: dplyr::n_distinct  
+      - href: function_of_the_week_ECHALUSE.qmd
+        text: lubridate::ceiling_date()
+      
 
             
 format:

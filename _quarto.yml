@@ -30,6 +30,8 @@ website:
         text: dplyr::near()  
       - href: function_of_the_week_CIRELL_ALFONSO.qmd
         text: dplyr::slice_sample  
+      - href: function_week_RUSSELL_reorder.qmd
+        text: forcats::fct_inorder(), fct_infreq(), fct_inseq()
       - href: function_of_the_week_Higbee.qmd
         text: forcats::fct_shift  
       - href: function_of_the_week_bsta356_Cornacchione.qmd
@@ -40,6 +42,8 @@ website:
         text: lubridate::ceiling_date()
       - href: function_of_the_week_Clem_write.xlsx.qmd
         text: openxlsx::write.xlsx()
+      # - href: function_of_the_week_PETERSON.qmd
+      #   text: purrr::pluck()  
       - href: function_of_the_week_Delsey_str_match_presentation.qmd
         text: stringr::str-match       
       - href: function_of_the_week_Cristancho.qmd

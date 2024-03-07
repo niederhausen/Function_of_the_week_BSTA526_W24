@@ -1,0 +1,177 @@
+---
+title: "forcats::fct_inorder(), fct_infreq(), fct_inseq()"
+subtitle: "Function of the Week"
+description: "Switching up the order of factor levels by frequency, first appearance, or numeric sequence"
+author: "Katie Russell"
+date: "Update 3/6/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# `fct_inorder()`, `fct_infreq()`, & `fct_inseq()`
+
+In this document, I will introduce a set of functions that allows us to reorder the levels in factor variables.
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(gtsummary)
+library(ggplot2)
+
+data("msleep")
+```
+
+## What is it for?
+
+We've seen how to manually reorder factor levels, which is straightforward and allows for a lot of control... but is also a lot of typing. Using a data set on the sleeping patterns of mammals, we can see how this works.  
+
+First, let's create some factor variables in our data:
+
+```{r}
+glimpse(msleep)
+
+msleep2 <- msleep %>% 
+  mutate(vore_factor = factor(vore),
+         order_factor = factor(order),
+         sleep_total_factor = case_when(
+           # Get ready for some super inappropriate rounding:
+           sleep_total < 5 ~ 5,
+           sleep_total >= 5 & sleep_total < 10 ~ 10,
+           sleep_total >= 10 & sleep_total < 15 ~ 15,
+           sleep_total >= 15 & sleep_total < 20 ~ 20),
+         sleep_total_factor = factor(sleep_total_factor))
+
+glimpse(msleep2)
+
+```
+
+Now let's look at a nice table of our new factor variables:
+
+```{r}
+msleep2 %>% 
+  select(vore_factor, order_factor, sleep_total_factor) %>% 
+  tbl_summary()
+```
+
+Ok, so our new factor levels have defaulted to alpha-numeric order, but maybe that's not how we want them. Re-ordering them manually might look something like this:
+
+```{r}
+msleep2 <- msleep2 %>% 
+  mutate(vore_factor = factor(vore_factor,
+                                  ordered = T,
+                                  levels = c("omni", "insecti", "herbi", "carni")))
+
+msleep2 %>% 
+  select(vore_factor) %>% 
+  tbl_summary()
+
+```
+
+This works, but could be a very unweildy process if we had a variable with a lot of factor levels, like our `order` variable. In addition, what if we wanted to order them in a different way, such as by frequency or by order in which they appear in our data? This would be hard to figure out manually!
+
+Forcats has three ordering functions that can help us out.
+
+**Order of first appearance**
+
+`fct_inorder()` will organize levels by the order in which they first appear. Let's try that out on our `vore` factor levels. First, a quick look at the first rows of our `msleep2` data set for reference:
+
+```{r}
+head(msleep2)
+```
+
+Now let's ask forcats to order our `vore` levels by the order of first appearance:
+
+
+```{r}
+fct_inorder(msleep2$vore_factor)
+
+msleep2 %>% 
+  mutate(vore_factor = vore_factor %>% 
+           fct_inorder()) %>% 
+  select(vore_factor) %>% 
+  tbl_summary()
+
+```
+
+**Number of observations**  
+
+`fct_infreq` will order levels by the number of observations within each level. Let's try it with a graph this time. Before ordering, our graph might look like this:
+
+```{r}
+msleep2 %>% 
+  ggplot(
+    aes(y = order_factor)) +
+  geom_bar()
+```
+
+Alphabetical order is helpful in libraries, but not necessarily in graphs! Reordering using `fct_infreq()`, we get a more visually helpful graph:
+
+```{r}
+msleep2 %>% 
+  mutate(order_factor = order_factor %>% 
+           fct_infreq()) %>% 
+  ggplot(aes(
+         y = order_factor)) +
+  geom_bar()
+```
+
+We can also reverse the order and go from highest frequency to lowest by using `fct_rev()` in combination with `fct_infreq`:
+
+```{r}
+msleep2 %>% 
+  mutate(order_factor = order_factor %>% 
+           fct_infreq() %>% 
+           fct_rev()) %>% 
+  ggplot(aes(
+         y = order_factor)) +
+  geom_bar()
+```
+
+**Numeric sequencing**  
+
+`fct_inseq` will correctly sequence numeric factor levels:
+
+```{r}
+msleep2 %>% 
+  select(sleep_total_factor) %>% 
+  tbl_summary()
+
+fct_inseq(msleep2$sleep_total_factor)
+
+msleep2 %>% 
+  mutate(sleep_total_factor = sleep_total_factor %>% 
+           fct_inseq() %>% 
+           fct_rev()) %>% 
+  select(sleep_total_factor) %>% 
+  tbl_summary()
+```
+
+
+## Is it helpful?
+
+I think this family of functions could be very helpful, particularly the ordering by frequency of occurrence. I'm a little less sold on `fct_inseq`, mainly because R already seems to sequence numeric factor levels correctly (unless you want them reversed). I bet Meike and Emile have better knowledge of where this could come in handy, though...
+
+
+## Sources
+https://forcats.tidyverse.org/reference/fct_inorder.html  
+https://livebook.manning.com/concept/r/fct_infreq

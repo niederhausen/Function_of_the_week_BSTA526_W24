@@ -3,7 +3,7 @@ title: "Functions of the Week"
 format: 
   html:
     listing: 
-      contents: function_week
+      contents: presentations
       type: table
       table-hover: true
       fields: [date, title, description]
@@ -13,3 +13,5 @@ format:
 ---
 
 Below are links to students' __Function of the Week__ submissions.
+
+

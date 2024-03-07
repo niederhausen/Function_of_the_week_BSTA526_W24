@@ -1,0 +1,193 @@
+---
+title: "lubridate::ceiling_date()"
+subtitle: "Function of the Week"
+description: "Used for rounding a given date-time object up to the nearest boundary of a specified time unit"
+author: "Vida Echaluse"
+date: "2/7/24"
+format: 
+  html:
+    link-external-newwindow: true
+    toc: true
+    toc_float:
+      collapsed: false
+    number-sections: true
+    number-depth: 4
+    self-contained: true
+    html-math-method: mathjax
+execute:
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r, include=FALSE}
+
+#| label: setup
+#| include: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#| include: false
+# load
+pacman::p_load(
+  vembedr,      # youtube embedder
+  skimr,        # get overview of data
+  tidyverse,    # data management + ggplot2 graphics 
+  readxl,       # import excel data
+  visdat,       # visualize data
+  gtsummary,    # summary statistics and tests
+  here,         # helps with file management
+  janitor,      # for data cleaning, making tables
+  dplyr
+  )
+```
+
+
+
+# `lubridate::ceiling_date()`
+
+In this document, I will introduce the `ceiling_date()` function and show what it's for.
+
+```{r, warning=FALSE, message=FALSE}
+library(lubridate)
+```
+
+
+## What is it for?
+
+The `ceiling_date()` function is part of the `lubridate` package. It is used for rounding a given date-time object up to the nearest boundary of a specified time unit. 
+
+The term <font color = "darkblue"> ceiling </font> means rounding up, and users can specify rounding up to the nearest second, minute, hour, day, week, month, or year.
+
+```{r}
+#| eval: false
+ceiling_date(x, unit=c("second", "minute", "hour", "day",
+    "week", "month", "year"))
+```
+
+*   <font color = "darkblue"> x </font> is a vector of date-time objects.
+
+*   <font color = "darkblue"> unit </font> is a string, period object, or date-time object rounded to the nearest boundary of a specific time unit.
+
+
+*****
+
+
+> Example #1
+
+```{r}
+# format: year/month/day hour/minute/second
+x <- ymd_hms("2009-08-03 12:01:59.23") # Monday
+```
+
+```{r}
+# rounding
+ceiling_date(x, "second")
+ceiling_date(x, "minute")
+ceiling_date(x, "5 mins")
+ceiling_date(x, "hour")
+ceiling_date(x, "2 hours")
+ceiling_date(x, "day") # Tuesday
+ceiling_date(x, "week") # Saturday
+ceiling_date(x, "month")
+ceiling_date(x, "year")
+```
+
+
+Reference:  
+1. <https://lubridate.tidyverse.org/reference/round_date.html>  
+2. [RDocumentation](https://www.rdocumentation.org/packages/lubridate/versions/0.2.5/topics/ceiling_date)
+
+
+*****
+
+
+> Example #2
+
+```{r}
+library(nycflights13)
+data(flights)
+names(flights)
+head(flights)
+```
+
+```{r}
+# To convert date and time information into a more standard datetime format.
+# We write a `function()` with parameters: year, month, day, and time.
+# Use `lubridate::make_datetime()` to create a new datetime object (make_datetime_100). 
+# The time format is in HHMM and splits the time into hours (time %/% 100) and minutes (time %% 100).
+
+make_datetime_100 <- function(year, month, day, time) {
+  make_datetime(year, month, day, time %/% 100, time %% 100)
+}
+```
+
+```{r}
+# Rows with missing departure or arrival times are filtered out. 
+# Use `mutate` to create new columns:
+# departure time, arrival time, scheduled departure time, and scheduled arrival time. 
+# The make_datetime_100 function is applied to, and after select columns:
+# origin, destination, columns ending with "delay," and columns ending with "time".
+
+flights_dt <- flights %>% 
+  filter(!is.na(dep_time), !is.na(arr_time)) %>% 
+  mutate(dep_time = make_datetime_100(year, month, day, dep_time),
+         arr_time = make_datetime_100(year, month, day, arr_time),
+         sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
+         sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)) %>%
+  select(origin, dest, ends_with("delay"), ends_with("time"))
+```
+
+```{r}
+# Check
+head(flights_dt)
+skim(flights_dt)
+```
+
+```{r}
+# Plot: Departure time
+ggplot(flights_dt, aes(x = dep_time)) +
+  geom_histogram(binwidth = 3600, color = "purple", alpha = 0.7) +
+  labs(title = "Departure Time Distribution",
+       x = "Departure Time",
+       y = "Frequency")
+```
+
+```{r}
+# Plot: Departure for each week
+flights_dt %>% 
+  count(week = ceiling_date(dep_time, "week")) %>% 
+  ggplot(aes(week, n)) +
+    geom_line(color = "purple") +
+    theme_minimal() +
+    labs(title = "Flight Departure per Week",
+         x = "Week",
+         y = "Count",
+         color = "Line Color")
+```
+
+```{r}
+# Plot: Departure for each month
+flights_dt %>% 
+  count(month = ceiling_date(dep_time, "month")) %>% 
+  ggplot(aes(month, n)) +
+    geom_line(color = "purple") +
+    theme_minimal() +
+    labs(title = "Flight Departure per Month",
+         x = "Month",
+         y = "Count",
+         color = "Line Color")
+```
+
+Instead of plotting the original departure time, we can round up to a nearby unit of time using `ceiling_date()`, and allows us to plot the number of flights per week and per month.
+
+Reference:  
+1. R for Data Science. <https://r4ds.had.co.nz/dates-and-times.html>  
+2. [How to Write Fuctions in R](https://www.dataquest.io/blog/write-functions-in-r/)
+
+
+## Is it helpful?
+Yes, it is useful in representing time in plots and can offer insights into patterns and/or trends over different time intervals. This can be especially true for large datasets where `ceiling_date()` can be used to simplify and group dates to provide a more concise and interpretable representation of trends. I don't use this everyday, but I do think it is pretty neat!
